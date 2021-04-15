@@ -1,9 +1,11 @@
 import 'package:another_flushbar/flushbar_helper.dart';
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_firebse_ddd/application/auth/sign_in_form/sign_in_form_state.dart';
 import 'package:notes_firebse_ddd/presentation/core/responsive.dart';
+import 'package:notes_firebse_ddd/presentation/routes/beam_locations.dart';
 import 'package:notes_firebse_ddd/providers.dart';
 
 class SignInForm extends ConsumerWidget {
@@ -33,7 +35,8 @@ class SignInForm extends ConsumerWidget {
               FlushbarHelper.createSuccess(
                 message: 'Logged In successfully',
               ).show(context);
-              // TODO: Navigate to home page
+              context.beamTo(NotesLocation());
+              context.read(authNotifierProvider.notifier).checkAuth();
             },
           ),
         );
