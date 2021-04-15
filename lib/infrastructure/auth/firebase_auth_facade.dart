@@ -4,13 +4,19 @@ import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notes_firebse_ddd/domain/auth/auth_failure.dart';
 import 'package:notes_firebse_ddd/domain/auth/i_auth_facade.dart';
+import 'package:notes_firebse_ddd/domain/auth/user.dart' as domain;
 import 'package:notes_firebse_ddd/domain/auth/value_objects.dart';
+import 'package:notes_firebse_ddd/infrastructure/auth/firebase_user_mapper.dart';
 
 class FirebaseAuthFacade implements IAuthFacade {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
   FirebaseAuthFacade(this._firebaseAuth, this._googleSignIn);
+
+  @override
+  Future<Option<domain.User>> getSignedInUser() async =>
+      optionOf(_firebaseAuth.currentUser?.toDomainUser());
 
   @override
   Future<Either<AuthFailure, Unit>> registerWithEmailAndPassword({
@@ -83,4 +89,10 @@ class FirebaseAuthFacade implements IAuthFacade {
       return left(const AuthFailure.serverError());
     }
   }
+
+  @override
+  Future<void> signOut() => Future.wait([
+        _firebaseAuth.signOut(),
+        _googleSignIn.signOut(),
+      ]);
 }

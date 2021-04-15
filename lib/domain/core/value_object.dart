@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:notes_firebse_ddd/domain/core/failures.dart';
+import 'package:uuid/uuid.dart';
 
 import 'errors.dart';
 
 abstract class ValueObject<T> {
   const ValueObject();
+
   Either<ValueFailure<T>, T> get value;
 
   bool isValid() => value.isRight();
@@ -26,4 +28,21 @@ abstract class ValueObject<T> {
   String toString() {
     return 'Value($value)';
   }
+}
+
+class UniqueID extends ValueObject<String> {
+  @override
+  final Either<ValueFailure<String>, String> value;
+
+  factory UniqueID() {
+    return UniqueID._(
+      right(const Uuid().v4()),
+    );
+  }
+
+  factory UniqueID.fromUniqueString(String uniqueID) {
+    return UniqueID._(right(uniqueID));
+  }
+
+  UniqueID._(this.value);
 }
