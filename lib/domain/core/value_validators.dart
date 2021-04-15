@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:notes_firebse_ddd/domain/auth/value_failure.dart';
 
 import 'failures.dart';
 
@@ -8,7 +9,8 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   if (RegExp(emailRegex).hasMatch(input)) {
     return Right(input);
   } else {
-    return Left(ValueFailure.invalidEmail(failedValue: input));
+    return Left(
+        ValueFailure.auth(AuthValueFailure.invalidEmail(failedValue: input)));
   }
 }
 
@@ -16,6 +18,7 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   if (input.length >= 6) {
     return right(input);
   } else {
-    return left(ValueFailure.shortPassword(failedValue: input));
+    return left(
+        ValueFailure.auth(AuthValueFailure.shortPassword(failedValue: input)));
   }
 }

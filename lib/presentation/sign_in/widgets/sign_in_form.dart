@@ -56,7 +56,9 @@ class SignInForm extends ConsumerWidget {
                 errorText: state.showErrorMessages
                     ? state.emailAddress.value.fold(
                         (f) => f.maybeMap(
-                              invalidEmail: (_) => 'Invalid Email',
+                              auth: (a) => a.authFailure.maybeMap(
+                                  invalidEmail: (_) => 'Invalid Email',
+                                  orElse: () => null),
                               orElse: () => null,
                             ),
                         (r) => null)
@@ -75,7 +77,9 @@ class SignInForm extends ConsumerWidget {
                 errorText: state.showErrorMessages
                     ? state.password.value.fold(
                         (f) => f.maybeMap(
-                              shortPassword: (_) => 'Short Password',
+                              auth: (a) => a.authFailure.maybeMap(
+                                  shortPassword: (_) => 'Short Password',
+                                  orElse: () => null),
                               orElse: () => null,
                             ),
                         (r) => null)
@@ -142,13 +146,18 @@ class SignInForm extends ConsumerWidget {
                     child: FaIcon(FontAwesomeIcons.google),
                   ),
                   Expanded(
-                      child: Text(
-                    'SIGN IN WITH GOOGLE',
-                    textAlign: TextAlign.center,
-                  )),
+                    child: Text(
+                      'SIGN IN WITH GOOGLE',
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
+            if (state.isSubmitting) ...[
+              const SizedBox(height: 8),
+              const LinearProgressIndicator()
+            ]
           ],
         ),
       ),

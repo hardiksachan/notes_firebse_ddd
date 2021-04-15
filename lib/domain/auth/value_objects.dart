@@ -21,6 +21,5 @@ class Password extends ValueObject<String> {
   factory Password(String input) {
     return Password._(validatePassword(input));
   }
-
   Password._(this.value);
 }
