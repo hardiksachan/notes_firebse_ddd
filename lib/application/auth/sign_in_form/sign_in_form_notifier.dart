@@ -8,10 +8,6 @@ import 'package:notes_firebse_ddd/domain/auth/value_objects.dart';
 class SignInFormNotifier extends StateNotifier<SignInFormState> {
   final IAuthFacade _authFacade;
 
-  EmailAddress get emailAddressVO => state.emailAddress;
-
-  Password get passwordVO => state.password;
-
   SignInFormNotifier(this._authFacade) : super(SignInFormState.initial());
 
   Future<void> updateEmail(String emailStr) async {
