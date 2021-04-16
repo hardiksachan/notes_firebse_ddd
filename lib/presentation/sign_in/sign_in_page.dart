@@ -1,21 +1,41 @@
+import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:notes_firebse_ddd/application/auth/auth_state.dart';
 import 'package:notes_firebse_ddd/presentation/core/responsive.dart';
+import 'package:notes_firebse_ddd/presentation/routes/beam_locations.dart';
 import 'package:notes_firebse_ddd/presentation/sign_in/widgets/sign_in_decor.dart';
 import 'package:notes_firebse_ddd/presentation/sign_in/widgets/sign_in_form.dart';
+import 'package:notes_firebse_ddd/providers.dart';
 
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Sign In'),
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(32),
-        child: const Responsive(
-          mobile: NarrowLayout(),
-          tablet: WideLayout(),
-          desktop: WideLayout(),
+    return ProviderListener(
+      provider: authNotifierProvider,
+      onChange: (BuildContext context, authState) {
+        if (authState == null) return;
+        authState as AuthState;
+        authState.maybeMap(
+            authenticated: (_) {
+              SchedulerBinding.instance?.addPostFrameCallback((_) {
+                context.beamTo(NotesLocation());
+              });
+            },
+            orElse: () {});
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Sign In'),
+        ),
+        body: Container(
+          padding: const EdgeInsets.all(32),
+          child: const Responsive(
+            mobile: NarrowLayout(),
+            tablet: WideLayout(),
+            desktop: WideLayout(),
+          ),
         ),
       ),
     );

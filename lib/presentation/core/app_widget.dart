@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:notes_firebse_ddd/presentation/routes/beam_locations.dart';
 
 final themeData = ThemeData.light().copyWith(
+  floatingActionButtonTheme:
+      FloatingActionButtonThemeData(backgroundColor: Colors.grey.shade900),
   textTheme: TextTheme(
     headline1: GoogleFonts.montserrat(
         fontSize: 97, fontWeight: FontWeight.w300, letterSpacing: -1.5),

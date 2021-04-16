@@ -37,7 +37,7 @@ abstract class NoteDTO implements _$NoteDTO {
       );
 
   Note toDomain() => Note(
-        id: UniqueID.fromUniqueString(id!),
+        id: UniqueID.fromUniqueString(id),
         body: NoteBody(body),
         color: NoteColor(Color(color)),
         todos:
