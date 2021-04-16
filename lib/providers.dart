@@ -5,6 +5,9 @@ import 'package:notes_firebse_ddd/application/auth/auth_notifier.dart';
 import 'package:notes_firebse_ddd/application/auth/sign_in_form/sign_in_form_notifier.dart';
 import 'package:notes_firebse_ddd/infrastructure/auth/firebase_auth_facade.dart';
 
+/// To be used in dart only packages i.e Infrastructure Layer
+final ProviderContainer providerContainer = ProviderContainer();
+
 final firebaseAuthProvider = Provider((ref) => FirebaseAuth.instance);
 final googleSignInProvider = Provider((ref) => GoogleSignIn(
     clientId:
