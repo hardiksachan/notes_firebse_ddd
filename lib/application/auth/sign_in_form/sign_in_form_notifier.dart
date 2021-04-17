@@ -36,6 +36,21 @@ class SignInFormNotifier extends StateNotifier<SignInFormState> {
     );
   }
 
+  Future<void> resetPasswordWithEmail() async {
+    state = state.copyWith(
+      isSubmitting: true,
+      authFailureOrSuccessOption: none(),
+    );
+
+    final failureOrSuccess = await _authFacade.resetPasswordWithEmail(
+        emailAddress: state.emailAddress);
+
+    state = state.copyWith(
+      isSubmitting: false,
+      authFailureOrSuccessOption: some(failureOrSuccess),
+    );
+  }
+
   Future<void> signInWithGoogle() async {
     state = state.copyWith(
       isSubmitting: true,

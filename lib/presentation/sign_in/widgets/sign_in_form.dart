@@ -120,6 +120,20 @@ class SignInForm extends ConsumerWidget {
                     child: const Text('REGISTER'),
                   ),
                 ),
+                Expanded(
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.grey.shade900,
+                      padding: const EdgeInsets.all(16.0),
+                    ),
+                    onPressed: () {
+                      context
+                          .read(signInFormNotifierProvider.notifier)
+                          .resetPasswordWithEmail();
+                    },
+                    child: const Text('Reset Password'),
+                  ),
+                ),
               ],
             ),
             const Divider(

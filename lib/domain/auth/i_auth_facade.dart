@@ -18,5 +18,9 @@ abstract class IAuthFacade {
 
   Future<Either<AuthFailure, Unit>> signInWithGoogle();
 
+  Future<Either<AuthFailure, Unit>> resetPasswordWithEmail({
+    required EmailAddress emailAddress,
+  });
+
   Future<void> signOut();
 }
