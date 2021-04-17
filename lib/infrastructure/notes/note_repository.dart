@@ -33,6 +33,7 @@ class NoteRepository implements INoteRepository {
         return left(const NoteFailure.insufficientPermission());
       } else {
         //TODO: Log This Error
+        print('Unexpected Note Failure caught.error: $e');
         return left(const NoteFailure.unexpected());
       }
     });
@@ -125,7 +126,7 @@ class NoteRepository implements INoteRepository {
         return left(const NoteFailure.unableToUpdate());
       } else {
         // REMINDER: Remove this log in prod
-        developer.log('Unexpected Note Failure caught', error: e);
+        print('Unexpected Note Failure caught.error: $e');
         return left(const NoteFailure.unexpected());
       }
     }

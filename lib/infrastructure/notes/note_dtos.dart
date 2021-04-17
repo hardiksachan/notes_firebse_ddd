@@ -18,7 +18,7 @@ abstract class NoteDTO implements _$NoteDTO {
     required int color,
     required List<TodoItemDTO> todos,
     @ServerTimestampConverter() required FieldValue serverTimeStamp,
-    required String id,
+    @JsonKey(ignore: true) String? id,
   }) = _NoteDTO;
   //@JsonKey(ignore: true) for id, if id in nullable
   const NoteDTO._();
@@ -37,7 +37,7 @@ abstract class NoteDTO implements _$NoteDTO {
       );
 
   Note toDomain() => Note(
-        id: UniqueID.fromUniqueString(id),
+        id: UniqueID.fromUniqueString(id!),
         body: NoteBody(body),
         color: NoteColor(Color(color)),
         todos:

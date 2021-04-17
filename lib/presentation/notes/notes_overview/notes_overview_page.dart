@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:notes_firebse_ddd/application/auth/auth_state.dart';
 import 'package:notes_firebse_ddd/application/notes/note_actor/note_actor_state.dart';
+import 'package:notes_firebse_ddd/presentation/notes/notes_overview/widgets/notes_overview_body_widget.dart';
 import 'package:notes_firebse_ddd/presentation/routes/beam_locations.dart';
 import 'package:notes_firebse_ddd/providers.dart';
 
@@ -58,6 +59,7 @@ class NotesOverviewPage extends StatelessWidget {
               },
             ),
           ),
+          body: NotesOverviewBodyWidgets(),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
               //TODO: Navigate to note form

@@ -25,7 +25,7 @@ class _$NoteDTOTearOff {
       required int color,
       required List<TodoItemDTO> todos,
       @ServerTimestampConverter() required FieldValue serverTimeStamp,
-      required String id}) {
+      @JsonKey(ignore: true) String? id}) {
     return _NoteDTO(
       body: body,
       color: color,
@@ -50,7 +50,8 @@ mixin _$NoteDTO {
   List<TodoItemDTO> get todos => throw _privateConstructorUsedError;
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -66,7 +67,7 @@ abstract class $NoteDTOCopyWith<$Res> {
       int color,
       List<TodoItemDTO> todos,
       @ServerTimestampConverter() FieldValue serverTimeStamp,
-      String id});
+      @JsonKey(ignore: true) String? id});
 }
 
 /// @nodoc
@@ -105,7 +106,7 @@ class _$NoteDTOCopyWithImpl<$Res> implements $NoteDTOCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -120,7 +121,7 @@ abstract class _$NoteDTOCopyWith<$Res> implements $NoteDTOCopyWith<$Res> {
       int color,
       List<TodoItemDTO> todos,
       @ServerTimestampConverter() FieldValue serverTimeStamp,
-      String id});
+      @JsonKey(ignore: true) String? id});
 }
 
 /// @nodoc
@@ -160,7 +161,7 @@ class __$NoteDTOCopyWithImpl<$Res> extends _$NoteDTOCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -174,7 +175,7 @@ class _$_NoteDTO extends _NoteDTO {
       required this.color,
       required this.todos,
       @ServerTimestampConverter() required this.serverTimeStamp,
-      required this.id})
+      @JsonKey(ignore: true) this.id})
       : super._();
 
   factory _$_NoteDTO.fromJson(Map<String, dynamic> json) =>
@@ -190,7 +191,8 @@ class _$_NoteDTO extends _NoteDTO {
   @ServerTimestampConverter()
   final FieldValue serverTimeStamp;
   @override
-  final String id;
+  @JsonKey(ignore: true)
+  final String? id;
 
   @override
   String toString() {
@@ -240,7 +242,7 @@ abstract class _NoteDTO extends NoteDTO {
       required int color,
       required List<TodoItemDTO> todos,
       @ServerTimestampConverter() required FieldValue serverTimeStamp,
-      required String id}) = _$_NoteDTO;
+      @JsonKey(ignore: true) String? id}) = _$_NoteDTO;
   const _NoteDTO._() : super._();
 
   factory _NoteDTO.fromJson(Map<String, dynamic> json) = _$_NoteDTO.fromJson;
@@ -255,7 +257,8 @@ abstract class _NoteDTO extends NoteDTO {
   @ServerTimestampConverter()
   FieldValue get serverTimeStamp => throw _privateConstructorUsedError;
   @override
-  String get id => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get id => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$NoteDTOCopyWith<_NoteDTO> get copyWith =>

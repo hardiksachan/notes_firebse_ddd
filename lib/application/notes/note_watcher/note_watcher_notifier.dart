@@ -18,6 +18,7 @@ class NoteWatcherNotifier extends StateNotifier<NoteWatcherState> {
       _noteStreamSubscription;
 
   Future<void> watchAll() async {
+    print('watching all');
     state = const NoteWatcherState.loadInProgress();
     await _noteStreamSubscription?.cancel();
     _noteStreamSubscription = _noteRepository
@@ -26,6 +27,7 @@ class NoteWatcherNotifier extends StateNotifier<NoteWatcherState> {
   }
 
   Future<void> watchUncompleted() async {
+    print('watching uncompleted');
     state = const NoteWatcherState.loadInProgress();
     await _noteStreamSubscription?.cancel();
     _noteStreamSubscription = _noteRepository
