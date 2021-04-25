@@ -33,9 +33,9 @@ final signInFormNotifierProvider = StateNotifierProvider.autoDispose(
 final authNotifierProvider = StateNotifierProvider(
     (ref) => AuthNotifier(ref.watch(firebaseAuthFacadeProvider)));
 
-final noteWatcherNotifierProvider = StateNotifierProvider(
-    (ref) => NoteWatcherNotifier(ref.watch(firestoreNoteRepository)));
 final noteActorNotifierProvider = StateNotifierProvider(
     (ref) => NoteActorNotifier(ref.watch(firestoreNoteRepository)));
 final noteFormNotifierProvider = StateNotifierProvider(
     (ref) => NoteFormNotifier(ref.watch(firestoreNoteRepository)));
+final noteWatcherNotifierProvider = StateNotifierProvider(
+    (ref) => NoteWatcherNotifier(ref.watch(firestoreNoteRepository)));
